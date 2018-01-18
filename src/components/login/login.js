@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // MODULES
 import { fire as firebase } from '../../fire';
 // COMPONENTS
-import SimpleBox from '../simplebox';
+// import SimpleBox from '../simplebox';
 // REDUX
 import { connect } from 'react-redux';
 
@@ -13,7 +13,7 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-        <SimpleBox title="Sign in" />
+        {/* <SimpleBox title="Sign in" /> */}
       </div>
     );
   }

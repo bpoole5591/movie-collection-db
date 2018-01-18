@@ -6,8 +6,8 @@ import React, { Component } from 'react';
 import VideoList from './components/video_list/video_list';
 import Dashboard from './components/dashboard/dashboard';
 import Navbar from './components/navbar/navbar';
-import SearchBar from './components/search_bar/search_bar'; 
-  
+import SearchBar from './components/search_bar/search_bar';
+
 // REDUX
 import { connect } from 'react-redux';
 // import reducer from './reducers/reducer';
@@ -16,7 +16,6 @@ import { connect } from 'react-redux';
 import './App.css';
 
 class App extends Component {
-
   // CUSTOM FUNCS
 
   // RENDER
@@ -34,7 +33,7 @@ class App extends Component {
 // REDUX
 
 function mapStateToProps(state) {
-    return state
+  return state;
 }
 
 // EXPORT
@@ -43,4 +42,4 @@ function mapStateToProps(state) {
 
 // REDUX EXPORT
 
-export default connect( mapStateToProps )(App)
+export default connect(mapStateToProps)(App);
