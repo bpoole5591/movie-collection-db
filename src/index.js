@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-// import store from './store';
+// import ReduxThunk from 'redux-thunk';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import { createStore, applyMiddleware } from 'redux';
@@ -19,12 +19,12 @@ const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
-  <BrowserRouter>
+    <BrowserRouter>
       <Switch>
-        <Route path="/Login" component={Login} /> 
-        <Route path="/" component={App} /> 
+        <Route path="/Login" component={Login} />
+        <Route path="/" component={App} />
       </Switch>
-      </BrowserRouter>  
-  </Provider>
-  , document.querySelector('#root'));
-
+    </BrowserRouter>
+  </Provider>,
+  document.querySelector('#root')
+);

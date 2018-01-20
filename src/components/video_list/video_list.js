@@ -39,50 +39,30 @@ import { connect } from 'react-redux';
 //     );
 //   }
 // }
-class VideoList extends React.Component {
-  render() {
-    var settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 3,
-      slidesToScroll: 3,
-    };
-    const { title, poster_path, overview } = this.props.movie;
-
+class VideoList extends Component {
+  renderMovies(movieData) {
     return (
-      <Slider {...settings}>
-        <div>
-          <img src="https://image.tmdb.org/t/p/w640${poster_path}" alt="Card image cap" />
-        </div>
-        <div>
-          <img src="https://image.tmdb.org/t/p/w640${poster_path}" alt="Card ima1ge cap" />
-        </div>
-        <div>
-          <img src="https://image.tmdb.org/t/p/w640${poster_path}" alt="Card ima2ge cap" />
-        </div>
-        <div>
-          <img src="https://image.tmdb.org/t/p/w640${poster_path}" alt="Card ima3ge cap" />
-        </div>
-        <div>
-          <img src="https://image.tmdb.org/t/p/w640${poster_path}" alt="Card ima4ge cap" />
-        </div>
-        <div>
-          <img src="https://image.tmdb.org/t/p/w640${poster_path}" alt="Card ima5ge cap" />
-        </div>
-      </Slider>
+      <div>
+        <img src={movieData.poster} alt="Card image cap" />
+        <div>{movieData.title}</div>
+      </div>
+    );
+  }
+
+  render() {
+    return (
+      <div>
+        <div>Test Line</div>
+        <div>{this.props.movie.map(this.renderMovies)}</div>
+      </div>
     );
   }
 }
-
 // REDUX
-
-function mapStateToProps({ movie }) {
-  console.log({ movie });
-
+  
+function mapStateToProps({movie}) {
   return { movie };
 }
-
 // EXPORT
 
 // export default AllVideos;

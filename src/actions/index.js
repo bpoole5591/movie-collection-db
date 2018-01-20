@@ -1,11 +1,14 @@
-const tmdb = "https://api.themoviedb.org/3/search/movie?api_key=";
+import axios from 'axios';
 
-const API_KEY = 'c7447852f8af11efbe693e4b67b07fa7';
+const API_KEY = '449a384f';
+const ROOT_URL = 'http://www.omdbapi.com/?s=';
 
 export const FETCH_MOVIE = 'FETCH_MOVIE';
 
+let movies = [];
+
 export function fetchMovie(term) {
-  const request = tmdb.get({API_KEY}`&query${term}`);
+  const request = axios.get(`${ROOT_URL}${term}&apikey=${API_KEY}`);
 
   return {
     type: FETCH_MOVIE,
@@ -13,6 +16,14 @@ export function fetchMovie(term) {
   };
 }
 
-// http://www.omdbapi.com/?t=300&apikey=449a384f
-//https://api.themoviedb.org/3/search/movie?api_key=c7447852f8af11efbe693e4b67b07fa7&query=up
+// http://www.omdbapi.com/?s=home&apikey=449a384f
 
+// export const getUserDetails = (email) => {
+//   // notice the return on the next line
+//   return axios.put('http://localhost:3030/user', user) .then((data) => {
+//       return {
+//           type: UPDATE_USER_DETAILS,
+//           user:data.data
+//       };
+//   });
+// });

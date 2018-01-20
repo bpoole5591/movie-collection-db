@@ -25,7 +25,7 @@ class App extends Component {
         <Navbar />
         <Dashboard />
         <SearchBar />
-        {this.props.movie.title && <VideoList />}
+        <VideoList />}
       </div>
     );
   }
