@@ -5,10 +5,10 @@ const ROOT_URL = 'http://www.omdbapi.com/?s=';
 
 export const FETCH_MOVIE = 'FETCH_MOVIE';
 
-let movies = [];
+let movie = [];
 
 export function fetchMovie(term) {
-  const request = axios.get(`${ROOT_URL}${term}&apikey=${API_KEY}`);
+  const request = axios.get(`${ROOT_URL}${term}&apikey=${API_KEY}`).then(response => (movie = response.data.Search));
 
   return {
     type: FETCH_MOVIE,

@@ -50,17 +50,19 @@ class VideoList extends Component {
   }
 
   render() {
+    //console.log(Array.from(this.props.movie));
     return (
       <div>
         <div>Test Line</div>
-        <div>{this.props.movie.map(this.renderMovies)}</div>
+        {/* <div>{this.props.movie.map(this.renderMovies)}</div> */ }
       </div>
     );
   }
 }
 // REDUX
-  
-function mapStateToProps({movie}) {
+
+function mapStateToProps({ movie }) {
+  console.log(movie);
   return { movie };
 }
 // EXPORT
