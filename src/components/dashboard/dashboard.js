@@ -20,25 +20,31 @@ export default class Dashboard extends Component {
   render() {
     return (
       <section className="jumbotron text-center">
-        <div className="container"> 
+        <div className="container">
           <h2>
             <br />
           </h2>
-          <h1 className="jumbotron-heading">Welcome, User</h1>
-          <p className="lead text-muted">
-            His duobus, sicariorum. Et orci aetate erat, sed nescio quo modo se gerendo levir meus aufert a me. Propter
-            hoc 'interventu 'vivere me scito. Et tamen hoc quod multo altius est eget arcu. Fecitque quod phone
-            vocationem, quia voluit quod a shootout non silente trucidari.
-          </p>
-          <p>
-            <a href="#" className="btn btn-primary">
-              I'll put something here
-            </a>
-            <br />
-            <a href="#" className="btn btn-primary">
-              I'll put something here, too
-            </a>
-          </p>
+          <div>
+            <h1 className="jumbotron-heading">Welcome, User</h1>
+          </div>
+          <div>
+            <p className="lead text-muted">
+              His duobus, sicariorum. Et orci aetate erat, sed nescio quo modo se gerendo levir meus aufert a me.
+              Propter hoc 'interventu 'vivere me scito. Et tamen hoc quod multo altius est eget arcu. Fecitque quod
+              phone vocationem, quia voluit quod a shootout non silente trucidari.
+            </p>
+          </div>
+          <div>
+            <p>
+              <a href="#" className="btn btn-primary">
+                I'll put something here
+              </a>
+              <br />
+              <a href="#" className="btn btn-primary">
+                I'll put something here, too
+              </a>
+            </p>
+          </div>
         </div>
       </section>
     );

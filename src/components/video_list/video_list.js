@@ -1,74 +1,72 @@
 import React, { Component } from 'react';
-import Slider from 'react-slick';
+// import Slider from 'react-slick';
 
 // MODULES
+import { bindActionCreators } from 'redux';
 
 // COMPONENTS
+import { fetchDetails } from '../../actions/index';
 
 // REDUX
 import { connect } from 'react-redux';
 
 // CSS/Other Resources
 
-// class VideoList extends Component {
-//   render() {
-//     // const title = this.props.movie.title;
-//     // const poster = this.props.movie.map(movie => movie.poster);
-//     // const length = this.props.movie.map(movie => movie.runtime);
-//     // const director = this.props.movie.map(movie => movie.director);
-//     // const stars = this.props.movie.map(movie => movie.actors);
-//     // const plot = this.props.movie.map(movie => movie.plot);
-//     // const genre = this.props.movie.map(movie => movie.genre);
-//     // const rated = this.props.movie.map(movie => movie.rated);
-//     // const year = this.props.movie.map(movie => movie.year);
-
-// const { title, poster, length } = this.props.movie;
-
-//     console.log('VideoList', this.props.movie);
-//     return (
-//       <div className="album text-muted">
-//         <div className="container">
-//           <div className="row">
-//             <div className="card">
-//               <img src={poster} alt="Card image cap" />
-//               <p className="card-text">{title}</p>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
 class VideoList extends Component {
+  constructor(props) {
+    super(props);
+    // console.log(this.props.handlePick);
+    this.handlePick = this.handlePick.bind(this);
+    this.renderMovies = this.renderMovies.bind(this);
+    
+  }
+
+  handlePick(id) {
+    this.props.handlePick(id);
+    this.props.fetchDetails(id);
+  }
+
   renderMovies(movieData) {
     return (
-      <div>
-        <img src={movieData.poster} alt="Card image cap" />
-        <div>{movieData.title}</div>
+      <div className="col-md-3" key={movieData.imdbID}>
+        <div className="well text-center">
+          <img src={movieData.Poster} alt="Card image cap" />
+          <h5>
+            {movieData.Title} ({movieData.Year})
+          </h5>
+          <br />
+          <button onClick={() => this.handlePick(movieData.imdbID)} className="btn btn-primary">
+            View Detail
+          </button>
+        </div>
       </div>
     );
   }
 
   render() {
-    //console.log(Array.from(this.props.movie));
+    //console.log(this.props.movie[0]);
     return (
-      <div>
-        <div>Test Line</div>
-        {/* <div>{this.props.movie.map(this.renderMovies)}</div> */ }
+      <div className="container">
+        <div className="row" id="movies">
+          {this.props.movie.map(this.renderMovies)}
+        </div>
       </div>
     );
   }
 }
+
 // REDUX
 
 function mapStateToProps({ movie }) {
-  console.log(movie);
+  //console.log(movie);
+  //console.log(typeof movie);
   return { movie };
 }
-// EXPORT
 
-// export default AllVideos;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchDetails }, dispatch);
+}
 
-// REDUX EXPORT
+export default connect(mapStateToProps, mapDispatchToProps)(VideoList);
 
-export default connect(mapStateToProps)(VideoList);
+
