@@ -1,5 +1,5 @@
-@import "~slick-carousel/slick/slick.css";
-@import "~slick-carousel/slick/slick-theme.css";
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
 /* @import "https://bootswatch.com/3/cosmo/bootstrap.min.css"; */
 
 body {
@@ -14,11 +14,29 @@ body {
 }
 
 @media (min-width: 960px){ */
-  #movies .col-md-3 .well {
-    height: 390px;
-  }
+#movies .col-md-3 .well {
+  height: 390px;
+}
 
-  #movies .col-md-3 img{
-    max-width: 160px;
-    max-height: 240px;
-  }
+#movies .col-md-3 img {
+  max-width: 160px;
+  max-height: 240px;
+}
+
+.ReactModalPortal > div {
+  opacity: 0.95;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  transition: opacity 200ms ease-in-out;
+}
+
+.modal {
+  background: darkgray;
+  color: black;
+
+  text-align: center;
+}
