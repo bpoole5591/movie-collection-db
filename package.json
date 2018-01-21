@@ -14,6 +14,7 @@
     "imdb-api": "^3.1.2",
     "jquery": "^3.2.1",
     "massive": "^4.6.1",
+    "nodemon": "^1.14.11",
     "passport": "^0.4.0",
     "passport-auth0": "^0.6.1",
     "react": "^16.2.0",
@@ -31,7 +32,7 @@
     "slick-carousel": "^1.8.1"
   },
   "engines": {
-    "node": "8.1.1",
+    "node": "8.9.0",
     "npm": "5.0.3"
   },
   "scripts": {
