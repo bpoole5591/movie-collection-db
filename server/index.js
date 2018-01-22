@@ -1,82 +1,27 @@
-// modules
 require('dotenv').config();
 const express = require('express');
-// const massive = require('massive');
-// const { json } = require('body-parser');
-// const cors = require('cors');
-// const session = require('express-session');
-
-// imported files
+const mongoose = require('mongoose');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
 const config = require('./config');
-// const controller = require('./controller');
+require('./models/User');
+require('./services/passport');
 
-// constants
-const { AUTH_DOMAIN, CLIENT_ID, CLIENT_SECRET } = config;
-const { CONNECTION_STRING, SESSION_SECRET } = process.env;
-/////////////
-// EXPRESS //
-/////////////
+mongoose.connect(config.mongoURI);
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send({ hi: 'there' });
-});
+app.use(
+  cookieSession({
+    maxAge: 2592000000, // 30 * 24 * 60 * 60 * 1000
+    keys: [config.cookieKey],
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
-// app.use(express.static(`../build`))
+require('./routes/authRoutes')(app);
 
-// massive(process.env.CONNECTION_STRING)
-//   .then(db => {
-//     app.set('db', db);
-//   })
-//   .catch(console.log);
+const PORT = process.env.PORT || 3005;
 
-// middleware
-// app.use(json());
-// app.use(cors());
-
-/////////////
-// SESSION //
-/////////////
-
-// app.use(
-//   session({
-//     secret: process.env.SESSION_SECRET,
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: {
-//       maxAge: 525600 * 60 * 1000
-//     }
-//   })
-// );
-
-////////////////////
-// AUTH0/Firebase //
-////////////////////
-
-// Initialize Firebase
-// var config = {
-//   apiKey: "AIzaSyDEf0ByNL77PY9IuKGOzX_V2alJxVmUjWU",
-//   authDomain: "themoviecollectiondatabase.firebaseapp.com",
-//   databaseURL: "https://themoviecollectiondatabase.firebaseio.com",
-//   projectId: "themoviecollectiondatabase",
-//   storageBucket: "",
-//   messagingSenderId: "803657737220"
-// };
-// const fire = firebase.initializeApp(config);
-
-//////////////////////////////
-// AUTHENTICATION ENDPOINTS //
-//////////////////////////////
-
-///////////////
-// ENDPOINTS //
-///////////////
-
-////////////
-// LISTEN //
-////////////
-
-const PORT = process.env.PORT || 3001;
-
-app.listen(PORT, () => console.log(`listening on port: ${PORT}`));
+app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));

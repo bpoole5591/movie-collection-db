@@ -19,25 +19,23 @@ class SearchBar extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    this.props.fetchMovie(this.state.term); 
+    this.props.fetchMovie(this.state.term);
     this.setState({ term: '' });
   }
 
   render() {
     return (
-      <div>
+      <div className="search">
         <form onSubmit={this.onFormSubmit}>
           <input
             placeholder="Search by movie title, actor, or genre"
-            className="form-control"
+            className="form-control short"
             value={this.state.term}
             onChange={this.onInputChange}
           />
-          <span className="btn btn-primary">
-            <button type="submit" className="btn btn-secondary">
-              Submit
-            </button>
-          </span>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
         </form>
         <br />
       </div>

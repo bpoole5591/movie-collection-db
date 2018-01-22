@@ -40,3 +40,30 @@ body {
 
   text-align: center;
 }
+
+.short {
+  max-width: 845px;
+  margin-left: 300px;
+}
+
+form {
+  position: relative;
+}
+
+input {
+  width: 100%;
+  padding-right: 5px;
+  margin-right: 0;
+}
+
+button {
+  width: 70px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 40px;
+}
+
+.search {
+  width: 80%;
+}

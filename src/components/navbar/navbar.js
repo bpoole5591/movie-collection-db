@@ -37,13 +37,19 @@ export default class Navbar extends Component {
           <h3>theMovieCollectionDatabase</h3>
         </div>
         <div>
-          <div className="home"><a href="/">Home</a></div>
+          <div className="home">
+            <a href="/">Home</a>
+          </div>
         </div>
         <div>
-          <div className="othernav"><a href="/">Random Movie</a></div>
+          <div className="othernav">
+            <a href="/">Random Movie</a>
+          </div>
         </div>
         <div>
-          <div className="othernav"><a href="/">Login</a></div>
+          <div className="othernav">
+            <a href="/auth/google">Login</a>
+          </div>
         </div>
       </div>
     );
