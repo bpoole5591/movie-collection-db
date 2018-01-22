@@ -42,7 +42,7 @@ body {
 }
 
 .short {
-  max-width: 845px;
+  max-width: 805px;
   margin-left: 300px;
 }
 
@@ -56,7 +56,7 @@ input {
   margin-right: 0;
 }
 
-button {
+#search {
   width: 70px;
   position: absolute;
   top: 0;

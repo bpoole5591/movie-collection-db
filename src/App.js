@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 // MODULES
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 // COMPONENTS
 import VideoList from './components/video_list/video_list';
@@ -24,7 +25,6 @@ class App extends Component {
       movieSelected: undefined,
     };
 
-    // this.handlePick = this.handlePick.bind(this);
   }
 
   handleCloseDetail = () => {
@@ -33,11 +33,8 @@ class App extends Component {
 
   handlePick = id => {
     this.setState({ movieSelected: id });
-    //fetchDetails(id);
-    // console.log(this.state.movieSelected);
   };
 
-  // RENDER
   render() {
     return (
       <div className="body">
@@ -52,21 +49,9 @@ class App extends Component {
     );
   }
 }
-// REDUX
 
 function mapStateToProps(state) {
   return state;
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ fetchDetails }, dispatch);
-// }
-
-// EXPORT
-
-// export default App;
-
-// REDUX EXPORT
-
-//export default connect((null, mapDispatchToProps), mapStateToProps)(App);
 export default connect(mapStateToProps)(App);
