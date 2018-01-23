@@ -25,20 +25,18 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div className="search">
-        <form onSubmit={this.onFormSubmit}>
-          <input
-            placeholder="Search by movie title, actor, or genre"
-            className="form-control short"
-            value={this.state.term}
-            onChange={this.onInputChange}
-          />
-          <button id="search" type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </form>
-        <br />
-      </div>
+      <form onSubmit={this.onFormSubmit} className="form-inline my-2 my-lg-0">
+        <input
+          placeholder="Movie Search"
+          className="form-control mr-sm-2"
+          type="text"
+          value={this.state.term}
+          onChange={this.onInputChange}
+        />
+        <button type="submit" className="btn btn-outline-primary my-2 my-sm-0">
+          Submit
+        </button>
+      </form>
     );
   }
 }

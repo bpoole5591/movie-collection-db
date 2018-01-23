@@ -5,7 +5,9 @@
   "dependencies": {
     "axios": "^0.17.1",
     "body-parser": "^1.18.2",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "4.0.0-alpha.6",
+    "check-dependencies": "^1.1.0",
+    "cleanup-dependencies": "^0.0.6",
     "concurrently": "^3.5.1",
     "cookie-session": "^2.0.0-beta.3",
     "cors": "^2.8.4",
@@ -28,12 +30,14 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
     "react-slick": "^0.16.0",
+    "react-stripe-checkout": "^2.6.3",
     "redux": "^3.7.2",
     "redux-form": "^7.2.0",
     "redux-promise": "^0.5.3",
     "redux-promise-middleware": "^5.0.0",
     "redux-thunk": "^2.2.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "tether": "^1.4.3"
   },
   "engines": {
     "node": "8.9.0",
@@ -50,6 +54,9 @@
   },
   "proxy": {
     "/auth/google": {
+      "target": "http://localhost:3005"
+    },
+    "/api/*": {
       "target": "http://localhost:3005"
     }
   }

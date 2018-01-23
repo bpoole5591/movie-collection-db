@@ -5,19 +5,23 @@ import React, { Component } from 'react';
 // COMPONENTS
 
 // REDUX
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 // CSS/Other Resources
 
-export default class Dashboard extends Component {
+class Dashboard extends Component {
   // LIFECYCLE FUNCS
-  constructor(props) {
-    // define state and bind methods
-    super(props); // defines props in constructor, reduces bugs
-    this.state = {};
+  nameHelper() {
+    if (this.props.auth) {
+      return this.props.auth.name;
+    }
   }
   // RENDER
   render() {
+    {
+      this.props.auth && console.log(this.props.auth.name);
+    }
+
     return (
       <section className="jumbotron text-center">
         <div className="container">
@@ -25,7 +29,7 @@ export default class Dashboard extends Component {
             <br />
           </h2>
           <div>
-            <h1 className="jumbotron-heading">Welcome, User</h1>
+            <h1 className="jumbotron-heading">Welcome, {this.nameHelper()}</h1>
           </div>
           <div>
             <p className="lead text-muted">
@@ -36,11 +40,11 @@ export default class Dashboard extends Component {
           </div>
           <div>
             <p>
-              <a href="#" className="btn btn-primary">
+              <a href="/" className="btn btn-primary">
                 I'll put something here
               </a>
               <br />
-              <a href="#" className="btn btn-primary">
+              <a href="/" className="btn btn-primary">
                 I'll put something here, too
               </a>
             </p>
@@ -52,12 +56,12 @@ export default class Dashboard extends Component {
 }
 // REDUX
 
-// function mapStateToProps(state) {
-//     return state
-// }
+function mapStateToProps(state) {
+  return state;
+}
 
 // EXPORT
 
 // REDUX EXPORT
 
-// export default connect( mapStateToProps, mapActionsToProps )(CarouselBanner)
+export default connect(mapStateToProps)(Dashboard);

@@ -7,13 +7,13 @@ const VideoModal = props => (
   <Modal
     isOpen={!!props.movieSelected} //!!props.movieSelected
     contentLabel="Movie Detail"
-
+    ariaHideApp={false}
   >
     {props.detail && console.log(props.detail.Title)}
 
     <div className="row">
       <div className="col-md-4">
-        <img src={props.detail.Poster} className="thumbnail" />
+        <img src={props.detail.Poster} alt="no poster" className="thumbnail" />
         <h2>
           {props.detail.Title} ({props.detail.Year})
         </h2>
@@ -25,8 +25,7 @@ const VideoModal = props => (
             {props.detail.Released}
           </li>
           <li className="list-group-item">
-            <strong>Rated: </strong>
-            {props.detail.Rated}
+            <strong>Rated: </strong>{props.detail.Rated}
           </li>
           <li className="list-group-item">
             <strong>Runtime: </strong>

@@ -1,68 +1,90 @@
 import React, { Component } from 'react';
 
 // MODULES
-import { findDOMNode } from 'react-dom';
+// import { findDOMNode } from 'react-dom';
+import { Link } from 'react-router-dom';
 // COMPONENTS
+import SearchBar from '../search_bar/search_bar';
+import Payments from '../payments';
 
 // REDUX
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 // CSS/Other Resources
-import $ from 'jquery';
 import './navbar.css';
 // import Logo from './logo.png';
 
-export default class Navbar extends Component {
-  // LIFECYCLE FUNCS
-  constructor(props) {
-    // define state and bind methods
-    super(props); // defines props in constructor, reduces bugs
-    this.state = {};
-    // BIND CUSTOM FUNCS
-    // ( (comp, funcsList) => {
-    //     funcsList.forEach( func => comp.func = func.bind(comp) )
-    // } )(this, [])
+class Navbar extends Component {
+  renderContent() {
+    switch (this.props.auth) {
+      case null:
+        return;
+      case false:
+        return (
+          <li className="nav-item">
+            <a className="nav-link" href="/auth/google">
+              Login
+            </a>
+          </li>
+        );
+      default:
+        return [
+          <li className="nav-item" key="1">
+            <a className="nav-link" href="/api/logout">
+              Logout
+            </a>
+          </li>,
+          <li className="nav-item" key="2">
+            <Payments />
+          </li>,
+        ];
+    }
   }
 
-  // CUSTOM FUNCS
-  handleToggle = () => {
-    const el = findDOMNode(this.refs.toggle);
-    $(el).slideToggle();
-  };
-  // RENDER
   render() {
+    console.log(this.props);
     return (
-      <div className="container">
-        <div>
-          <h3>theMovieCollectionDatabase</h3>
+      <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
+        <button
+          className="navbar-toggler navbar-toggler-right"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarTogglerDemo02"
+          aria-controls="navbarTogglerDemo02"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon" />
+        </button>
+        <div className="navbar-brand">
+          <Link to={this.props.auth ? '/dashboard' : '/'} className="navbar-brand">
+            theMovieCollectionDatabase
+          </Link>
         </div>
-        <div>
-          <div className="home">
-            <a href="/">Home</a>
-          </div>
+
+        <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul className="navbar-nav mr-auto mt-2 mt-md-0">
+            <li className="nav-item active">
+              <a className="nav-link" href="/">
+                Home <span className="sr-only">(current)</span>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/">
+                Random Movie
+              </a>
+            </li>
+            {this.renderContent()}
+          </ul>
+          <SearchBar />
         </div>
-        <div>
-          <div className="othernav">
-            <a href="/">Random Movie</a>
-          </div>
-        </div>
-        <div>
-          <div className="othernav">
-            <a href="/auth/google">Login</a>
-          </div>
-        </div>
-      </div>
+      </nav>
     );
   }
 }
-// REDUX
 
-// function mapStateToProps(state) {
-//     return state
-// }
+function mapStateToProps({ auth }) {
+  return { auth };
+}
 
-// EXPORT
-
-// REDUX EXPORT
-
-// export default connect( mapStateToProps, mapActionsToProps )(CarouselBanner)
+export default connect(mapStateToProps)(Navbar);

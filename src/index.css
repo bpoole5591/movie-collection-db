@@ -42,7 +42,7 @@ body {
 }
 
 .short {
-  max-width: 805px;
+  max-width: 798px;
   margin-left: 300px;
 }
 
@@ -57,7 +57,8 @@ input {
 }
 
 #search {
-  width: 70px;
+  width: 85px;
+  text-align: center;
   position: absolute;
   top: 0;
   right: 0;
@@ -66,4 +67,8 @@ input {
 
 .search {
   width: 80%;
+}
+
+::placeholder {
+  opacity: 0.5 !important;
 }

@@ -30,7 +30,7 @@ class VideoList extends Component {
     return (
       <div className="col-md-3" key={movieData.imdbID}>
         <div className="well text-center">
-          <img src={movieData.Poster} alt="Card image cap" />
+          <img src={movieData.Poster} alt={movieData.imdbID} />
           <h5>
             {movieData.Title} ({movieData.Year})
           </h5>
