@@ -12,16 +12,7 @@ export const CREATE_ERROR = 'CREATE_ERROR';
 export const ADD_USER = 'ADD_USER';
 export const COLLECTION_ADD = 'COLLECTION_ADD';
 export const FETCH_COLLECTION = 'FETCH_COLLECTION';
-
-// export function fetchMovie(term) {
-//   return {
-//     type: FETCH_MOVIE,
-//     payload: axios
-//       .get(`${ROOT_URL}?s=${term}&apikey=${API_KEY}`)
-//       .then(response => response.data.Search)
-//       .catch(console.log),
-//   };
-// }
+export const FETCH_COL_DETAILS = 'FETCH_COL_DETAILS';
 
 export const fetchMovie = term => {
   return function(dispatch) {
@@ -84,3 +75,14 @@ export function fetchCollection(googleID) {
     }),
   };
 }
+
+export const fetchColDetails = movies => {
+  const details = movies.map(movie => axios.get(`${ROOT_URL}?i=${movie.imdbid}&apikey=${API_KEY}`));
+  return {
+    type: FETCH_COL_DETAILS,
+    payload: axios
+      .all(details)
+      .then(response => response.map(response => response.data))
+      .catch(console.log),
+  };
+};

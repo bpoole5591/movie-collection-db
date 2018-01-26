@@ -30,7 +30,7 @@ class Dashboard extends Component {
               His duobus, sicariorum. Et orci aetate erat, sed nescio quo modo se gerendo levir meus aufert a me.
               Propter hoc 'interventu 'vivere me scito. Et tamen hoc quod multo altius est eget arcu. Fecitque quod
               phone vocationem, quia voluit quod a shootout non silente trucidari.
-            </p>
+            </p><br />
           </div>
           {/* <div>
             <p>
