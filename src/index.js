@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import ReduxPromise from 'redux-promise';
+import promiseMiddleware from "redux-promise-middleware";
 import reduxThunk from 'redux-thunk';
 import './index.css';
 import App from './App';
@@ -17,7 +17,7 @@ require('../node_modules/bootstrap/js/src/util');
 require('bootstrap');
 
 // const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
-const store = createStore(reducers, {}, applyMiddleware(ReduxPromise, reduxThunk));
+const store = createStore(reducers, {}, applyMiddleware(promiseMiddleware(), reduxThunk));
 
 ReactDOM.render(
   <Provider store={store}>

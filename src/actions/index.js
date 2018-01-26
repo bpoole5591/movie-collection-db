@@ -9,24 +9,37 @@ export const FETCH_MOVIE = 'FETCH_MOVIE';
 export const FETCH_DETAILS = 'FETCH_DETAILS';
 export const FETCH_USER = 'FETCH_USER';
 export const CREATE_ERROR = 'CREATE_ERROR';
+export const ADD_USER = 'ADD_USER';
+export const COLLECTION_ADD = 'COLLECTION_ADD';
+export const FETCH_COLLECTION = 'FETCH_COLLECTION';
 
-export function fetchMovie(term) {
-  const request = axios.get(`${ROOT_URL}?s=${term}&apikey=${API_KEY}`).then(response => response.data.Search);
+// export function fetchMovie(term) {
+//   return {
+//     type: FETCH_MOVIE,
+//     payload: axios
+//       .get(`${ROOT_URL}?s=${term}&apikey=${API_KEY}`)
+//       .then(response => response.data.Search)
+//       .catch(console.log),
+//   };
+// }
 
-  return {
-    type: FETCH_MOVIE,
-    payload: request,
+export const fetchMovie = term => {
+  return function(dispatch) {
+    axios
+      .get(`${ROOT_URL}?s=${term}&apikey=${API_KEY}`)
+      .then(res => dispatch({ type: FETCH_MOVIE, payload: res.data.Search }));
   };
-}
+};
+
 // http://www.omdbapi.com/?s=home&apikey=449a384f
 
-export function fetchDetails(id) {
-  const request = axios.get(`${ROOT_URL}?i=${id}&apikey=${API_KEY}`).then(response => response.data);
-  return {
-    type: FETCH_DETAILS,
-    payload: request,
+export const fetchDetails = id => {
+  return function(dispatch) {
+    axios
+      .get(`${ROOT_URL}?i=${id}&apikey=${API_KEY}`)
+      .then(res => dispatch({ type: FETCH_DETAILS, payload: res.data }));
   };
-}
+};
 // http://www.omdbapi.com/?i=tt0099785&apikey=449a384f
 
 export const fetchUser = () => async dispatch => {
@@ -41,12 +54,33 @@ export const fetchUser = () => async dispatch => {
 //   };
 // };
 
-// export const CreateShelf = props => dispatch =>
-//   CreateShelfProxy(props)
-//     .then(shelf => {
-//       hashHistory.push(`shelves/${shelf.id}`);
-//     })
-//     .catch(error => {
-//       console.log(error);
-//       dispatch({ type: CREATE_ERROR, payload: error });
-//     });
+export function addUser(googleID, firstName) {
+  return {
+    type: ADD_USER,
+    payload: axios
+      .post('/api/user', { googleID, firstName })
+      .then(response => response.data)
+      .catch(console.log),
+  };
+}
+
+export function collectionAdd(googleID, imdbID) {
+  return {
+    type: COLLECTION_ADD,
+    payload: axios
+      .post('/api/collection', { googleID, imdbID })
+      .then(response => response.data)
+      .catch(console.log),
+  };
+}
+
+export function fetchCollection(googleID) {
+  console.log('are you firing?');
+  return {
+    type: FETCH_COLLECTION,
+    payload: axios.get('/api/collection', { googleID }).then(response => {
+      console.log(response.data);
+      return response.data;
+    }),
+  };
+}

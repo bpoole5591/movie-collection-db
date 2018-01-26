@@ -1,3 +1,3 @@
-UPDATE Collections (shelfNum, googleID, imdbID)
+UPDATE Collections (shelfNum, googleId, imdbID)
 SET shelfNum = $1
 WHERE googleID = $2 AND imdbID =$3

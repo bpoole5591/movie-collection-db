@@ -16,9 +16,15 @@ import './navbar.css';
 
 class Navbar extends Component {
   renderContent() {
-    switch (this.props.auth) {
+    switch (this.props.auth.googleId.length) {
       case null:
-        return;
+      return (
+        <li className="nav-item">
+          <a className="nav-link" href="/auth/google">
+            Login
+          </a>
+        </li>
+      );
       case false:
         return (
           <li className="nav-item">
@@ -42,7 +48,6 @@ class Navbar extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
         <button

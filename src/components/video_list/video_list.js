@@ -6,11 +6,13 @@ import { bindActionCreators } from 'redux';
 
 // COMPONENTS
 import { fetchDetails } from '../../actions/index';
+import { collectionAdd } from '../../actions/index';
 
 // REDUX
 import { connect } from 'react-redux';
 
 // CSS/Other Resources
+import noimage from '../../noimage.png';
 
 class VideoList extends Component {
   constructor(props) {
@@ -18,7 +20,7 @@ class VideoList extends Component {
     // console.log(this.props.handlePick);
     this.handlePick = this.handlePick.bind(this);
     this.renderMovies = this.renderMovies.bind(this);
-    
+    this.imgError = this.imgError.bind(this);
   }
 
   handlePick(id) {
@@ -26,11 +28,25 @@ class VideoList extends Component {
     this.props.fetchDetails(id);
   }
 
+  addToCollection(id) {
+    console.log(this.props);
+    console.log(id);
+    alert('Movie added to your collection!');
+    this.props.collectionAdd(this.props.auth.googleId, id);
+  }
+
+  imgError() { // alt image handling not working yet
+    let no = () => {
+      return { noimage };
+    }
+    return no;
+  }
+
   renderMovies(movieData) {
     return (
       <div className="col-md-3" key={movieData.imdbID}>
         <div className="well text-center">
-          <img src={movieData.Poster} alt={movieData.imdbID} />
+          <img src={movieData.Poster} alt="" onError={this.imgError()} /> 
           <h5>
             {movieData.Title} ({movieData.Year})
           </h5>
@@ -38,6 +54,7 @@ class VideoList extends Component {
           <button onClick={() => this.handlePick(movieData.imdbID)} className="btn btn-primary">
             View Detail
           </button>
+          <button onClick={() => this.addToCollection(movieData.imdbID)}>+Add to Collection</button>
         </div>
       </div>
     );
@@ -57,16 +74,18 @@ class VideoList extends Component {
 
 // REDUX
 
-function mapStateToProps({ movie }) {
-  //console.log(movie);
-  //console.log(typeof movie);
-  return { movie };
+// function mapStateToProps({ movie }) {
+//   //console.log(movie);
+//   //console.log(typeof movie);
+//   return { movie };
+// }
+
+function mapStateToProps(state) {
+  return state;
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchDetails }, dispatch);
+  return bindActionCreators({ fetchDetails, collectionAdd }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(VideoList);
-
-

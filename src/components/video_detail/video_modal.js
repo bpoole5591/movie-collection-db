@@ -3,14 +3,15 @@ import Modal from 'react-modal';
 
 import { connect } from 'react-redux';
 
+import imdblogo from '../../IMDB_Logo_2016.png';
+
 const VideoModal = props => (
   <Modal
     isOpen={!!props.movieSelected} //!!props.movieSelected
     contentLabel="Movie Detail"
     ariaHideApp={false}
   >
-    {props.detail && console.log(props.detail.Title)}
-
+    {props.detail && console.log(props)}
     <div className="row">
       <div className="col-md-4">
         <img src={props.detail.Poster} alt="no poster" className="thumbnail" />
@@ -25,7 +26,8 @@ const VideoModal = props => (
             {props.detail.Released}
           </li>
           <li className="list-group-item">
-            <strong>Rated: </strong>{props.detail.Rated}
+            <strong>Rated: </strong>
+            {props.detail.Rated}
           </li>
           <li className="list-group-item">
             <strong>Runtime: </strong>
@@ -50,7 +52,7 @@ const VideoModal = props => (
         </ul>
       </div>
     </div>
-
+    <a href={`http://www.imdb.com/title/${props.detail.imdbID}/`} target="_blank"><img src={imdblogo} style={{ height: '4vh', width: '6.1vw' }} alt="" /></a>
     <button onClick={props.handleCloseDetail}>Close Detail</button>
   </Modal>
 );

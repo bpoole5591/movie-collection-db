@@ -29,9 +29,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchUser();
+    this.props.fetchUser().then(() => {
+      if (this.props.auth.googleId) {
+        this.props.addUser(this.props.auth.googleId, this.props.auth.name);
+      }
+    });
   }
-
   handleCloseDetail = () => {
     this.setState({ movieSelected: undefined });
   };
@@ -41,6 +44,7 @@ class App extends Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <BrowserRouter>

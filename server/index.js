@@ -6,7 +6,7 @@ require('./database/models/User');
 const passport = require('passport');
 const config = require('./config/dev');
 require('./services/passport');
-const bodyParser = require('body-parser');
+const { json } = require('body-parser');
 const massive = require('massive');
 const control = require('./controller');
 
@@ -14,11 +14,14 @@ mongoose.connect(config.mongoURI);
 
 const app = express();
 
+app.use(express.static(`${__dirname}/../build`));
+app.use(json());
+
 massive(process.env.CONNECTION_STRING)
   .then(db => {
     app.set('db', db);
   })
-  .catch(console.log(error));
+  .catch(console.log);
 
 app.use(
   cookieSession({
@@ -30,6 +33,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./routes/authRoutes')(app);
+// require('./routes/dbRoutes')(app);
+app.post('/api/user', control.addUser);
+app.post('/api/collection', control.collectionAdd);
+app.get('/api/collection', control.fetchCollection);
+
+const path = require('path');
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 const PORT = process.env.PORT || 3005;
 

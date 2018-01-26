@@ -3,11 +3,12 @@ import React, { Component } from 'react';
 // MODULES
 
 // COMPONENTS
-
+import Collection from '../collection_view/collection_view';
 // REDUX
 import { connect } from 'react-redux';
 
 // CSS/Other Resources
+import './dashboard.css';
 
 class Dashboard extends Component {
   // LIFECYCLE FUNCS
@@ -18,27 +19,20 @@ class Dashboard extends Component {
   }
   // RENDER
   render() {
-    {
-      this.props.auth && console.log(this.props.auth.name);
-    }
-
     return (
       <section className="jumbotron text-center">
-        <div className="container">
-          <h2>
-            <br />
-          </h2>
+        <div className="">
           <div>
             <h1 className="jumbotron-heading">Welcome, {this.nameHelper()}</h1>
           </div>
           <div>
-            <p className="lead text-muted">
+            <p className="lead">
               His duobus, sicariorum. Et orci aetate erat, sed nescio quo modo se gerendo levir meus aufert a me.
               Propter hoc 'interventu 'vivere me scito. Et tamen hoc quod multo altius est eget arcu. Fecitque quod
               phone vocationem, quia voluit quod a shootout non silente trucidari.
             </p>
           </div>
-          <div>
+          {/* <div>
             <p>
               <a href="/" className="btn btn-primary">
                 I'll put something here
@@ -48,6 +42,9 @@ class Dashboard extends Component {
                 I'll put something here, too
               </a>
             </p>
+          </div> */}
+          <div>
+            <Collection />
           </div>
         </div>
       </section>
