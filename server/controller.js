@@ -32,4 +32,16 @@ module.exports = {
       })
       .catch(console.log);
   },
+
+  deleteMovie: (req, res) => {
+    const db = req.app.get('db');
+    console.log('req.params:', req.params);
+    const googleId = req.params.googleID;
+    const imdbID = req.params.imdbID;
+    console.log('googleid:', googleId);
+    db
+      .delete_from_shelf([googleId, imdbID])
+      .then(response => res.json(response))
+      .catch(console.log);
+  },
 };

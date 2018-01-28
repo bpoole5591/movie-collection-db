@@ -1,4 +1,4 @@
-import { COLLECTION_ADD, FETCH_COLLECTION, FETCH_COL_DETAILS } from '../actions/index';
+import { COLLECTION_ADD, FETCH_COLLECTION, FETCH_COL_DETAILS, DELETE_MOVIE } from '../actions/index';
 
 const initialState = { data: [], details: [] };
 
@@ -18,6 +18,8 @@ export default function(state = initialState, action) {
       return Object.assign({}, state, { data: action.payload });
     case FETCH_COL_DETAILS + '_FULFILLED':
       return { ...state, details: [...state.details, action.payload] };  
+    case DELETE_MOVIE:
+      return Object.assign({}, state, { data: action.payload });
     default:
       return state;
   }
