@@ -10,12 +10,19 @@ import { connect } from 'react-redux';
 // CSS/Other Resources
 import './dashboard.css';
 
+import { deleteCollection } from '../../actions/index';
+
 class Dashboard extends Component {
   // LIFECYCLE FUNCS
   nameHelper() {
     if (this.props.auth) {
       return this.props.auth.name;
     }
+  }
+
+  handleClick(id) {
+    console.log('deleteCollection fired!');
+    deleteCollection(this.props.auth.googleId);
   }
   // RENDER
   render() {
@@ -27,10 +34,9 @@ class Dashboard extends Component {
           </div>
           <div>
             <p className="lead">
-              His duobus, sicariorum. Et orci aetate erat, sed nescio quo modo se gerendo levir meus aufert a me.
-              Propter hoc 'interventu 'vivere me scito. Et tamen hoc quod multo altius est eget arcu. Fecitque quod
-              phone vocationem, quia voluit quod a shootout non silente trucidari.
-            </p><br />
+              Welcome to your movie collection! <br /> To add a movie to your collection, search for the movie using the search bar at the top of the page. Then click on the "add to collection" button below the movie poster! <br /> To start your collection from scratch just click the button below!
+            </p>
+            <button className="btn btn-primary" onClick={() => { this.handleClick() }}>Delete Your Collection</button><br />
           </div>
           {/* <div>
             <p>

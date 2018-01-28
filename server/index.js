@@ -38,6 +38,7 @@ app.post('/api/user', control.addUser);
 app.post('/api/collection', control.collectionAdd);
 app.get('/api/collection', control.fetchCollection);
 app.delete('/api/collection/delmov/:googleID/:imdbID', control.deleteMovie);
+app.delete('/api/collection/delcol/:googleID', control.deleteCollection);
 
 // const path = require('path');
 // app.get('*', (req, res) => {

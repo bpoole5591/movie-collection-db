@@ -44,4 +44,15 @@ module.exports = {
       .then(response => res.json(response))
       .catch(console.log);
   },
+
+  deleteCollection: (req, res) => {
+    const db = req.app.get('db');
+    console.log('req.params:', req.params);
+    const googleId = req.params.googleID;
+    console.log('googleid:', googleId);
+    db
+      .delete_collection([googleId])
+      .then(response => res.json(response))
+      .catch(console.log);
+  },
 };

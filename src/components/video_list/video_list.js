@@ -12,7 +12,6 @@ import { collectionAdd } from '../../actions/index';
 import { connect } from 'react-redux';
 
 // CSS/Other Resources
-import noimage from '../../noimage.png';
 
 class VideoList extends Component {
   constructor(props) {
@@ -20,7 +19,6 @@ class VideoList extends Component {
     // console.log(this.props.handlePick);
     this.handlePick = this.handlePick.bind(this);
     this.renderMovies = this.renderMovies.bind(this);
-    this.imgError = this.imgError.bind(this);
   }
 
   handlePick(id) {
@@ -35,18 +33,18 @@ class VideoList extends Component {
     this.props.collectionAdd(this.props.auth.googleId, id);
   }
 
-  imgError() { // alt image handling not working yet
-    let no = () => {
-      return { noimage };
-    }
-    return no;
-  }
-
   renderMovies(movieData) {
     return (
       <div className="col-md-3" key={movieData.imdbID}>
         <div className="well text-center">
-          <img src={movieData.Poster} alt="" onError={this.imgError()} /> 
+          <img
+            src={
+              movieData.Poster !== 'N/A'
+                ? movieData.Poster
+                : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2000px-No_image_available.svg.png'
+            }
+            alt="nothing here"
+          />
           <h5>
             {movieData.Title} ({movieData.Year})
           </h5>
@@ -61,7 +59,6 @@ class VideoList extends Component {
   }
 
   render() {
-    //console.log(this.props.movie[0]);
     return (
       <div className="container">
         <div className="row" id="movies">

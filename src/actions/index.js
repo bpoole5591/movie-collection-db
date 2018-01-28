@@ -13,13 +13,15 @@ export const ADD_USER = 'ADD_USER';
 export const COLLECTION_ADD = 'COLLECTION_ADD';
 export const FETCH_COLLECTION = 'FETCH_COLLECTION';
 export const FETCH_COL_DETAILS = 'FETCH_COL_DETAILS';
-export const DELETE_MOVIE = 'DELETE_MOVIE;';
+export const DELETE_MOVIE = 'DELETE_MOVIE';
+export const DELETE_COLLECTION = 'DELETE_COLLECTION';
 
 export const fetchMovie = term => {
   return function(dispatch) {
     axios
       .get(`${ROOT_URL}?s=${term}&apikey=${API_KEY}`)
-      .then(res => dispatch({ type: FETCH_MOVIE, payload: res.data.Search }));
+      .then(res => dispatch({ type: FETCH_MOVIE, payload: res.data.Search }))
+      .catch(console.log);
   };
 };
 
@@ -92,6 +94,16 @@ export const deleteMovie = (googleID, imdbID) => {
     type: DELETE_MOVIE,
     payload: axios
       .delete(`/api/collection/delmov/${googleID}/${imdbID}`)
+      .then(response => response.data)
+      .catch(console.log),
+  };
+};
+
+export const deleteCollection = googleID => {
+  return {
+    type: DELETE_COLLECTION,
+    payload: axios
+      .delete(`/api/collection/delcol/${googleID}`)
       .then(response => response.data)
       .catch(console.log),
   };
