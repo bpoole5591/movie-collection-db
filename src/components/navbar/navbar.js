@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // MODULES
-// import { findDOMNode } from 'react-dom';
+import _ from 'underscore';
 import { Link } from 'react-router-dom';
 // COMPONENTS
 import SearchBar from '../search_bar/search_bar';
@@ -12,20 +12,15 @@ import { connect } from 'react-redux';
 
 // CSS/Other Resources
 import './navbar.css';
-// import Logo from './logo.png';
 
 class Navbar extends Component {
+  constructor(props) {
+    super(props);
+    this.randomMovie = this.randomMovie.bind(this);
+  }
   renderContent() {
     switch (this.props.auth.googleId.length) {
       case null:
-      return (
-        <li className="nav-item">
-          <a className="nav-link" href="/auth/google">
-            Login
-          </a>
-        </li>
-      );
-      case false:
         return (
           <li className="nav-item">
             <a className="nav-link" href="/auth/google">
@@ -45,6 +40,12 @@ class Navbar extends Component {
           </li>,
         ];
     }
+  }
+
+  randomMovie() {
+    const id = _.sample(this.props.collection.data).imdbid;
+    this.props.handlePick(id);
+    this.props.fetchDetails(id);
   }
 
   render() {
@@ -75,9 +76,9 @@ class Navbar extends Component {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">
+              <button className="random nav-link" onClick={() => this.randomMovie()}>
                 Random Movie
-              </a>
+              </button>
             </li>
             {this.renderContent()}
           </ul>
@@ -88,8 +89,8 @@ class Navbar extends Component {
   }
 }
 
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps(state) {
+  return state;
 }
 
 export default connect(mapStateToProps)(Navbar);

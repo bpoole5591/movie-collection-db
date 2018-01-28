@@ -72,7 +72,6 @@ export function fetchCollection(googleID) {
   return {
     type: FETCH_COLLECTION,
     payload: axios.get('/api/collection', { googleID }).then(response => {
-      console.log(response.data);
       return response.data;
     }),
   };

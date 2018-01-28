@@ -2,7 +2,6 @@ module.exports = {
   addUser: (req, res) => {
     const db = req.app.get('db');
     const { googleID, firstName } = req.body;
-    // console.log('{ googleID, firstName }: ', { googleID, firstName });
     db
       .check_user([googleID])
       .then(response => {
@@ -35,10 +34,8 @@ module.exports = {
 
   deleteMovie: (req, res) => {
     const db = req.app.get('db');
-    console.log('req.params:', req.params);
     const googleId = req.params.googleID;
     const imdbID = req.params.imdbID;
-    console.log('googleid:', googleId);
     db
       .delete_from_shelf([googleId, imdbID])
       .then(response => res.json(response))
@@ -47,9 +44,7 @@ module.exports = {
 
   deleteCollection: (req, res) => {
     const db = req.app.get('db');
-    console.log('req.params:', req.params);
     const googleId = req.params.googleID;
-    console.log('googleid:', googleId);
     db
       .delete_collection([googleId])
       .then(response => res.json(response))

@@ -7,7 +7,7 @@ import imdblogo from '../../IMDB_Logo_2016.png';
 
 const VideoModal = props => (
   <Modal
-    isOpen={!!props.movieSelected} //!!props.movieSelected
+    isOpen={!!props.movieSelected}
     contentLabel="Movie Detail"
     ariaHideApp={false}
   >
@@ -59,7 +59,6 @@ const VideoModal = props => (
 
 function mapStateToProps({ detail }) {
   console.log();
-  //console.log(typeof movie);
   return { detail };
 }
 

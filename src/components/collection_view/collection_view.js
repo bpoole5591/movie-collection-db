@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import Slider from 'react-slick';
 
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 
 import { fetchCollection, fetchDetails, fetchColDetails, deleteMovie } from '../../actions';
 
-// import * as actions from '../../actions';
 
 class Collection extends Component {
   constructor(props) {
@@ -26,8 +24,8 @@ class Collection extends Component {
   }
 
   handleClick(id) {
-    console.log('deleteMovie fired!');
     deleteMovie(this.props.auth.googleId, id);
+    window.location.reload(true);
   }
 
   render() {
@@ -35,7 +33,7 @@ class Collection extends Component {
       dots: true,
       infinite: true,
       speed: 500,
-      slidesToShow: 6,
+      slidesToShow: 8,
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 2000,

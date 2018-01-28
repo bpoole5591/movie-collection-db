@@ -24,4 +24,8 @@ a:hover {
 a:active {
   text-decoration: underline;
 }
-
+.random {
+  background-color:#f7f7f7;
+  border: none;
+  margin-top: 1.28px;
+}

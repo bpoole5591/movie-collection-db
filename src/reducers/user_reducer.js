@@ -5,7 +5,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  // console.log('action: ', action);
   switch (action.type) {
     case ADD_USER + '_FULFILLED':
     return Object.assign({}, state, { googleId: action.payload });

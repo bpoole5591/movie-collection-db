@@ -33,8 +33,8 @@ body {
 }
 
 .det img {
-  max-width: 160px;
-  max-height: 240px;
+  max-width: 300px;
+  max-height: 325px;
   padding-left: 0px;
   font-size: 14px;
   align-items: center;

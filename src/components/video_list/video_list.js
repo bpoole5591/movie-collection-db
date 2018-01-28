@@ -16,7 +16,6 @@ import { connect } from 'react-redux';
 class VideoList extends Component {
   constructor(props) {
     super(props);
-    // console.log(this.props.handlePick);
     this.handlePick = this.handlePick.bind(this);
     this.renderMovies = this.renderMovies.bind(this);
   }
@@ -27,10 +26,8 @@ class VideoList extends Component {
   }
 
   addToCollection(id) {
-    console.log(this.props);
-    console.log(id);
-    alert('Movie added to your collection!');
     this.props.collectionAdd(this.props.auth.googleId, id);
+    window.location.reload(true);
   }
 
   renderMovies(movieData) {
@@ -68,14 +65,6 @@ class VideoList extends Component {
     );
   }
 }
-
-// REDUX
-
-// function mapStateToProps({ movie }) {
-//   //console.log(movie);
-//   //console.log(typeof movie);
-//   return { movie };
-// }
 
 function mapStateToProps(state) {
   return state;

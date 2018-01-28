@@ -21,8 +21,8 @@ class Dashboard extends Component {
   }
 
   handleClick(id) {
-    console.log('deleteCollection fired!');
     deleteCollection(this.props.auth.googleId);
+    window.location.reload(true);
   }
   // RENDER
   render() {
@@ -37,18 +37,8 @@ class Dashboard extends Component {
               Welcome to your movie collection! <br /> To add a movie to your collection, search for the movie using the search bar at the top of the page. Then click on the "add to collection" button below the movie poster! <br /> To start your collection from scratch just click the button below!
             </p>
             <button className="btn btn-primary" onClick={() => { this.handleClick() }}>Delete Your Collection</button><br />
+            <p className="lead"><br /></p>
           </div>
-          {/* <div>
-            <p>
-              <a href="/" className="btn btn-primary">
-                I'll put something here
-              </a>
-              <br />
-              <a href="/" className="btn btn-primary">
-                I'll put something here, too
-              </a>
-            </p>
-          </div> */}
           <div>
             <Collection />
           </div>
