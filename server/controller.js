@@ -1,12 +1,12 @@
 module.exports = {
   addUser: (req, res) => {
     const db = req.app.get('db');
-    const { googleID, firstName } = req.body;
+    const { googleID, firstName, picture } = req.body;
     db
       .check_user([googleID])
       .then(response => {
         if (!response.length) {
-          db.add_user([googleID, firstName]).then(data => res.json(data[0]));
+          db.add_user([googleID, firstName, picture]).then(data => res.json(data[0]));
         }
       })
       .catch(console.log);

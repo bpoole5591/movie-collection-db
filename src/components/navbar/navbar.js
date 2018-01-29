@@ -19,8 +19,8 @@ class Navbar extends Component {
     this.randomMovie = this.randomMovie.bind(this);
   }
   renderContent() {
-    switch (this.props.auth.googleId.length) {
-      case null:
+    switch (this.props.auth.googleId) {
+      case '':
         return (
           <li className="nav-item">
             <a className="nav-link" href="/auth/google">
@@ -35,6 +35,11 @@ class Navbar extends Component {
               Logout
             </a>
           </li>,
+          <li className="nav-item" key="3">
+            <button className="random nav-link" onClick={() => this.randomMovie()}>
+              Random Movie
+            </button>
+          </li>,
           <li className="nav-item" key="2">
             <Payments />
           </li>,
@@ -43,9 +48,13 @@ class Navbar extends Component {
   }
 
   randomMovie() {
-    const id = _.sample(this.props.collection.data).imdbid;
-    this.props.handlePick(id);
-    this.props.fetchDetails(id);
+    if (this.props.collection.data.length > 0) {
+      const id = _.sample(this.props.collection.data).imdbid;
+      this.props.handlePick(id);
+      this.props.fetchDetails(id);
+    } else {
+      alert("You don't have a collection to choose from!");
+    }
   }
 
   render() {
@@ -74,11 +83,6 @@ class Navbar extends Component {
               <a className="nav-link" href="/">
                 Home <span className="sr-only">(current)</span>
               </a>
-            </li>
-            <li className="nav-item">
-              <button className="random nav-link" onClick={() => this.randomMovie()}>
-                Random Movie
-              </button>
             </li>
             {this.renderContent()}
           </ul>
