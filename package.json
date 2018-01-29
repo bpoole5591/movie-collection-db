@@ -56,13 +56,5 @@
     "client": "yarn start",
     "dev": "concurrently \"yarn server\" \"yarn client\"",
     "test": "mocha"
-  },
-  "proxy": {
-    "/auth/google": {
-      "target": "http://localhost:3005"
-    },
-    "/api/*": {
-      "target": "http://localhost:3005"
-    }
   }
 }
