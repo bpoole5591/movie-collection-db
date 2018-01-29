@@ -20,7 +20,7 @@ export const fetchMovie = term => {
   return function(dispatch) {
     axios
       .get(`${ROOT_URL}?s=${term}&apikey=${API_KEY}`)
-      .then(res => dispatch({ type: FETCH_MOVIE, payload: res.data.Search }))
+      .then(res => dispatch({ type: FETCH_MOVIE, payload: res.data.Search })) //Redux-Thunk function
       .catch(console.log);
   };
 };
@@ -31,7 +31,7 @@ export const fetchDetails = id => {
   return function(dispatch) {
     axios
       .get(`${ROOT_URL}?i=${id}&apikey=${API_KEY}`)
-      .then(res => dispatch({ type: FETCH_DETAILS, payload: res.data }));
+      .then(res => dispatch({ type: FETCH_DETAILS, payload: res.data })); //Redux-Thunk function
   };
 };
 // http://www.omdbapi.com/?i=tt0099785&apikey=449a384f
