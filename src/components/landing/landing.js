@@ -23,13 +23,13 @@ export default class Landing extends Component {
       <section className="jumbotron text-center">
         <div>
           <div>
-            <h2 className="jumbotron-heading">
+            <h3 className="jumbotron-heading">
               Welcome to <br />theMovieCollectionDatabase
-            </h2>
+            </h3>
           </div>
           <div>
             <br />
-            <img src={logo} style={{ height: '14vh', width: '16vw' }} alt="mcd logo" />
+            <img src={logo} style={{ height: '120px', width: '264px' }} alt="mcd logo" />
             <p className="lead text-muted">
               <br />You are not logged in. Please <a href="/auth/google">log in</a> now.
             </p>

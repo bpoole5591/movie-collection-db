@@ -14,7 +14,7 @@ mongoose.connect(config.mongoURI);
 
 const app = express();
 
-app.use(express.static(`${__dirname}/../build`));
+// app.use(express.static(`${__dirname}/../build`));
 app.use(json());
 
 massive(process.env.CONNECTION_STRING)
@@ -40,18 +40,18 @@ app.get('/api/collection', control.fetchCollection);
 app.delete('/api/collection/delmov/:googleID/:imdbID', control.deleteMovie);
 app.delete('/api/collection/delcol/:googleID', control.deleteCollection);
 
-const path = require('path');
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../build/index.html'));
-});
+// const path = require('path');
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../build/index.html'));
+// });
 
-// const PORT = process.env.PORT || 3005;
+const PORT = process.env.PORT || 3005;
 
 // app.listen(process.env.PORT || 3005);
 
-// app.listen(PORT, () => console.log(`And we are LIVE on ${PORT}!`));
+app.listen(PORT, () => console.log(`And we are LIVE on ${PORT}!`));
 
-const PORT = process.env.PORT || 3005;
-app.listen(PORT, () => {
-  console.log(`Our app is running on port ${PORT}`);
-});
+// const PORT = process.env.PORT || 3005;
+// app.listen(PORT, () => {
+//   console.log(`Our app is running on port ${PORT}`);
+// });

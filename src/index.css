@@ -41,6 +41,18 @@ body {
   justify-content: center;
 }
 
+.landinglogo img {
+  height: 120px;
+  width: 264px;
+}
+
+@media screen and (min-width: 800px) {
+  .landinglogo img {
+    height: 120px !important;
+    width: 264px !important;
+  }
+}
+
 .ReactModalPortal > div {
   opacity: 0.95;
 }

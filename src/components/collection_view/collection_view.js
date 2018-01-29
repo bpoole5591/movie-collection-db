@@ -5,13 +5,11 @@ import { connect } from 'react-redux';
 
 import { fetchCollection, fetchDetails, fetchColDetails, deleteMovie } from '../../actions';
 
-
 class Collection extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: '',
-      
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -33,10 +31,19 @@ class Collection extends Component {
       dots: true,
       infinite: true,
       speed: 500,
-      slidesToShow: 8,
+      slidesToShow: 7,
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 2000,
+      responsive: [
+        { breakpoint: 2000, settings: { slidesToShow: 7 } },
+        { breakpoint: 1680, settings: { slidesToShow: 6 } },
+        { breakpoint: 1500, settings: { slidesToShow: 5 } },
+        { breakpoint: 1200, settings: { slidesToShow: 4 } },
+        { breakpoint: 1000, settings: { slidesToShow: 3 } },
+        { breakpoint: 780, settings: { slidesToShow: 2, dots: false } },
+        { breakpoint: 500, settings: { slidesToShow: 1, dots: false } },
+      ],
     };
     return (
       <Slider {...settings}>
@@ -54,7 +61,13 @@ class Collection extends Component {
                     alt=":)"
                   />
                   {details.Title} ({details.Year})
-                  <button onClick={() => { this.handleClick(details.imdbID) }}>Remove</button>
+                  <button
+                    onClick={() => {
+                      this.handleClick(details.imdbID);
+                    }}
+                  >
+                    Remove
+                  </button>
                 </div>
               </div>
             );
