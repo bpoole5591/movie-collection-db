@@ -9,7 +9,7 @@ module.exports = app => {
   );
 
   app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
-    res.redirect('/dashboard');
+    res.redirect('http://brian-poole.com/dashboard');
   });
 
   app.get('/api/logout', (req, res) => {
