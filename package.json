@@ -5,7 +5,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "body-parser": "^1.18.2",
-    "bootstrap": "4.0.0-alpha.6",
+    "bootstrap": "^4.0.0",
     "check-dependencies": "^1.1.0",
     "cleanup-dependencies": "^0.0.6",
     "concurrently": "^3.5.1",
@@ -25,6 +25,7 @@
     "passport": "^0.4.0",
     "passport-auth0": "^0.6.1",
     "passport-google-oauth20": "^1.0.0",
+    "popper.js": "^1.12.9",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-modal": "^3.1.11",
