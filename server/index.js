@@ -45,6 +45,8 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../build/index.html'));
 });
 
-const PORT = process.env.PORT || 3005;
+// const PORT = process.env.PORT || 3005;
 
-app.listen(PORT, () => console.log(`And we are LIVE on ${PORT}!`));
+app.listen(process.env.PORT || 3005);
+
+// app.listen(PORT, () => console.log(`And we are LIVE on ${PORT}!`));
