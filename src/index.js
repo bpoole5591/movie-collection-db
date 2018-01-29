@@ -12,8 +12,8 @@ import Tether from 'tether';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 window.jQuery = jQuery;
 window.Tether = Tether;
-// require('../../node_modules/bootstrap/js/src/collapse');
-// require('../node_modules/bootstrap/js/src/util');
+require('../node_modules/bootstrap/js/src/collapse');
+require('../node_modules/bootstrap/js/src/util');
 require('bootstrap');
 
 // const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
