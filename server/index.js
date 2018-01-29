@@ -50,7 +50,7 @@ app.get('*', (req, res) => {
 // app.listen(process.env.PORT || 3005);
 
 // app.listen(PORT, () => console.log(`And we are LIVE on ${PORT}!`));
-
+const HOST = '0.0.0.0';
 const PORT = process.env.PORT || 3005;
 app.listen(PORT, () => {
   console.log(`Our app is running on port ${PORT}`);
